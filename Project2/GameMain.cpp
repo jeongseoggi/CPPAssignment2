@@ -10,10 +10,10 @@
 using namespace std;
 
 
-Player* SelectJob(Player* player, string userNickname)
+Player* SelectJob(Player* playerArr[], string userNickname)
 {
 	int userInput;
-
+	Player* player = nullptr;
 
 	while (true)
 	{
@@ -23,16 +23,20 @@ Player* SelectJob(Player* player, string userNickname)
 		switch (userInput)
 		{
 		case 1:
-			player = new Warrior(userNickname);
+			player = playerArr[0];
+			player->setNickname(userNickname);
 			break;
 		case 2:
-			player = new Magician(userNickname);
+			player = playerArr[1];
+			player->setNickname(userNickname);
 			break;
 		case 3:
-			player = new Theif(userNickname);
+			player = playerArr[2];
+			player->setNickname(userNickname);
 			break;
 		case 4:
-			player = new Archer(userNickname);
+			player = playerArr[3];
+			player->setNickname(userNickname);
 			break;
 		default:
 			cout << "다시 선택해주세요" << endl;
@@ -104,12 +108,13 @@ int main()
 
 	Player* player = nullptr;
 	Monster* monster = nullptr;
-	string userNickname;
-
+	string userNickname = " ";
+	Player* players[4] = { new Warrior(userNickname), new Magician(userNickname), new Theif(userNickname),
+		new Archer(userNickname) };
 
 
 	GameStart(job_arr, &userNickname);
-	player = SelectJob(player, userNickname);
+	player = SelectJob(players, userNickname);
 	monster = MonsterCreate(monster);
 
 
